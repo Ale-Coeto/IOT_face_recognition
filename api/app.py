@@ -9,7 +9,7 @@ app = Flask(__name__)
 def hello_world():
     return "Hello, World!"
 
-@app.get('/getImg', methods=['POST'])
+@app.route('/getImg', methods=['POST'])
 def get_img():
     input = request.get_json()["img"]
     
