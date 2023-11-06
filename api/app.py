@@ -1,4 +1,5 @@
-from flask import Flask
+from flask import Flask, request, jsonify
+
 # from flask_cors import CORS
 
 app = Flask(__name__)
@@ -7,6 +8,12 @@ app = Flask(__name__)
 @app.get('/')
 def hello_world():
     return "Hello, World!"
+
+@app.get('/getImg', methods=['POST'])
+def get_img():
+    input = request.get_json()["img"]
+    
+    return jsonify({"result": input})
 
 # from http.server import BaseHTTPRequestHandler
  
