@@ -1,1 +1,5 @@
 Flask
+face-recognition
+io
+PIL
+requests

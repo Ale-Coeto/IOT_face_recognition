@@ -1,4 +1,8 @@
 from flask import Flask, request, jsonify
+import face_recognition
+import requests
+from PIL import Image
+from io import BytesIO
 
 # from flask_cors import CORS
 
@@ -15,13 +19,25 @@ def get_img():
     
     return jsonify({"result": input})
 
-# from http.server import BaseHTTPRequestHandler
- 
-# class handler(BaseHTTPRequestHandler):
- 
-#     def do_GET(self):
-#         self.send_response(200)
-#         self.send_header('Content-type','text/plain')
-#         self.end_headers()
-#         self.wfile.write('Hello, world!'.encode('utf-8'))
-#         return
+
+@app.route('/recognize', methods=['POST'])
+def recognize():
+    raw_image = request.get_json()["img"]
+    images = request.get_json()["images"]
+
+    # Send an HTTP GET request to the URL
+    for img in images:
+        url = img
+
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            # Read the image content and create a PIL Image object
+            image = Image.open(BytesIO(response.content))
+            image.show()  # Display the image (you can remove this line if you don't want to display it)
+    else:
+        print("Failed to retrieve the image. Status code:", response.status_code)
+
+    
+    return jsonify({"result": input})
+
