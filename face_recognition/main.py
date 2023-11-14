@@ -1,10 +1,10 @@
 from flask import Flask, request, jsonify
 from Utils.recognize import recognize_faces
 
-from flask_cors import CORS
+# from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+# CORS(app)
 
 @app.get('/')
 def hello_world():
