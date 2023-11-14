@@ -2,7 +2,7 @@ import base64
 from PIL import Image
 from io import BytesIO
 import requests
-import face_recognition
+# import face_recognition
 import numpy as np
 
 def getBase64Image(compressed_img):
@@ -46,18 +46,18 @@ def recognize_faces(raw_image, images):
 
         # Detect the faces
         
-        base_encodings = face_recognition.face_encodings(base64_image)[0]
+        # base_encodings = face_recognition.face_encodings(base64_image)[0]
 
-        for image in imgs:
-            encodings = face_recognition.face_encodings(image)[0]
-            if len(encodings) == 0:
-                return False
+        # for image in imgs:
+        #     encodings = face_recognition.face_encodings(image)[0]
+        #     if len(encodings) == 0:
+        #         return False
             
-            results = face_recognition.compare_faces([base_encodings], encodings)
-            if True in results:
-                # print(results)
-                # print(True)
-                return True
+        #     results = face_recognition.compare_faces([base_encodings], encodings)
+        #     if True in results:
+        #         # print(results)
+        #         # print(True)
+        #         return True
         
         # print(False)
         return False
