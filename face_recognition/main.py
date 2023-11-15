@@ -21,10 +21,11 @@ def get_img():
 def recognize():
     raw_image = request.get_json()["img"]
     images = request.get_json()["images"]
+    # print(images)
     # getBase64Image(raw_image)
     # result = getURLImage(images[0])
     result = recognize_faces(raw_image, images)
-
+    # result = "hi"
     return jsonify({"result": result})
 
 if __name__ == "__main__":

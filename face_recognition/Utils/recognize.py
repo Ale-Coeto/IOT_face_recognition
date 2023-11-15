@@ -2,8 +2,9 @@ import base64
 from PIL import Image
 from io import BytesIO
 import requests
-# import face_recognition
+import face_recognition
 import numpy as np
+# from flask import jsonify
 
 def getBase64Image(compressed_img):
     # Decode the base64 string into bytes
@@ -39,27 +40,33 @@ def recognize_faces(raw_image, images):
 
         # Get images by url
         imgs = []
+        # names = []
         # print(images)
-        for url in images:
-            # print(url)
-            imgs.append(getURLImage(url))
+        for image in images:
+            # print(image)
+            url = image['url']
+            name = image['name']
+            # print(url, "name: ", name)
+            imgs.append([getURLImage(url),name])
+            # names.append(name)
 
         # Detect the faces
-        
-        # base_encodings = face_recognition.face_encodings(base64_image)[0]
+        base_encodings = face_recognition.face_encodings(base64_image)[0]
 
-        # for image in imgs:
-        #     encodings = face_recognition.face_encodings(image)[0]
-        #     if len(encodings) == 0:
-        #         return False
+        for imageObj in imgs:
+            image = imageObj[0]
             
-        #     results = face_recognition.compare_faces([base_encodings], encodings)
-        #     if True in results:
-        #         # print(results)
-        #         # print(True)
-        #         return True
+            encodings = face_recognition.face_encodings(image)[0]
+            if len(encodings) == 0:
+                return False
+            
+            results = face_recognition.compare_faces([base_encodings], encodings)
+            if True in results:
+                # print(results)
+                print(True)
+                return imageObj[1]
         
-        # print(False)
+        print(False)
         return False
     
     except Exception as e:
