@@ -60,10 +60,10 @@ def recognize_faces(raw_image, images):
             if len(encodings) == 0:
                 return False
             
-            results = face_recognition.compare_faces([base_encodings], encodings)
+            results = face_recognition.compare_faces([base_encodings], encodings, 0.65)
             if True in results:
                 # print(results)
-                print(True)
+                print("result: " , imageObj[1])
                 return imageObj[1]
         
         print(False)
