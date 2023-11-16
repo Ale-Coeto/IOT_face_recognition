@@ -1,4 +1,4 @@
-FROM animcogn/face_recognition:cpu
+FROM animcogn/face_recognition:cpu-latest
 
 # The rest of this file just runs an example script.
 
@@ -7,12 +7,14 @@ FROM animcogn/face_recognition:cpu
 # RUN cd /root/your_app_or_whatever && \
 #     pip3 install -r requirements.txt
 # RUN whatever_command_you_run_to_start_your_app
+# RUN ls && ls /app
+# RUN cd /app && ls && ls /aaaaaa
+# RUN pip3 install -r requirements.txt
 
-RUN cd /app && \
-    pip3 install -r requirements.txt
+EXPOSE 8000
 
-CMD cd /app && \
-    python3 app.py
+# RUN cd /app && python3 app.py
+
 
 # COPY . /root/face_recognition
 # RUN cd /root/face_recognition && \

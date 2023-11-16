@@ -2,7 +2,7 @@ Flask
 Pillow
 numpy
 requests
-# face-recognition
+face-recognition
 # face_recognition_models
 # Click>=6.0
 # dlib>=19.3.0

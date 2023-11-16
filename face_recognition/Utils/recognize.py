@@ -66,12 +66,12 @@ def recognize_faces(raw_image, images):
                 print("result: " , imageObj[1])
                 return imageObj[1]
         
-        print(False)
-        return False
+        print("none")
+        return "None"
     
     except Exception as e:
         print(e)
-        return False
+        return "error"
 
 #TEST
 # urls = [

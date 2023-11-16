@@ -1,7 +1,7 @@
 version: '2.4'
 services:
   face:
-    image: animcogn/face_recognition:cpu-latest
+    #image: animcogn/face_recognition:cpu-latest
     container_name: face_recognition
     network_mode: host
     tty: true 
@@ -10,4 +10,7 @@ services:
     privileged: true 
     volumes:
       - ../:/app
+    build:
+      context: .
+      dockerfile: Dockerfile
     command: ["bash"]
