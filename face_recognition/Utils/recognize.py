@@ -14,7 +14,7 @@ def getBase64Image(compressed_img):
     image = Image.open(BytesIO(image_bytes))
     image_np = np.array(image)
 
-    # image.show()
+    image.show()
     return image_np
     # Display or save the image as needed
 
@@ -60,7 +60,7 @@ def recognize_faces(raw_image, images):
             if len(encodings) == 0:
                 return False
             
-            results = face_recognition.compare_faces([base_encodings], encodings, 0.65)
+            results = face_recognition.compare_faces([base_encodings], encodings, 0.62)
             if True in results:
                 # print(results)
                 print("result: " , imageObj[1])
