@@ -8,9 +8,9 @@ services:
     ports:
       - 8000:8000
     privileged: true 
-    volumes:
-      - ../:/app
+    # volumes:
+    #   - ../:/app
     build:
       context: .
       dockerfile: Dockerfile
-    command: ["bash"]
+    command: python3 main.py

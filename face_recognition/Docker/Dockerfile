@@ -1,25 +1,13 @@
 FROM animcogn/face_recognition:cpu-latest
 
-# The rest of this file just runs an example script.
-
-# If you wanted to use this Dockerfile to run your own app instead, maybe you would do this:
-# COPY . /root/your_app_or_whatever
-# RUN cd /root/your_app_or_whatever && \
-#     pip3 install -r requirements.txt
-# RUN whatever_command_you_run_to_start_your_app
-# RUN ls && ls /app
-# RUN cd /app && ls && ls /aaaaaa
-# RUN pip3 install -r requirements.txt
 
 EXPOSE 8000
 
+# RUN cd /app && pip3 install -r requirements.txt
 # RUN cd /app && python3 app.py
+# Mount relative to the current working directory
 
+COPY ../. /app
+WORKDIR /app
+RUN pip3 install -r requirements.txt
 
-# COPY . /root/face_recognition
-# RUN cd /root/face_recognition && \
-#     pip3 install -r requirements.txt && \
-#     python3 setup.py install
-
-# CMD cd /root/face_recognition/examples && \
-#     python3 recognize_faces_in_pictures.py
