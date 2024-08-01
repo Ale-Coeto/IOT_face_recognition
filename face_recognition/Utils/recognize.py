@@ -4,7 +4,6 @@ from io import BytesIO
 import requests
 import face_recognition
 import numpy as np
-# from flask import jsonify
 
 def getBase64Image(compressed_img):
     # Decode the base64 string into bytes
@@ -16,21 +15,16 @@ def getBase64Image(compressed_img):
 
     image.show()
     return image_np
-    # Display or save the image as needed
 
 def getURLImage(url):
-    # print("url: ", url)
     response = requests.get(url)
     if response.status_code == 200:
         # Read the image content and create a PIL Image object
         image = Image.open(BytesIO(response.content))
         image_np = np.array(image)
-        # image.show()  # Display the image (you can remove this line if you don't want to display it)
         return image_np
     
     return None
-    # else:
-    #     print("Failed to retrieve the image. Status code:", response.status_code)
 
 def recognize_faces(raw_image, images):
 
@@ -40,15 +34,10 @@ def recognize_faces(raw_image, images):
 
         # Get images by url
         imgs = []
-        # names = []
-        # print(images)
         for image in images:
-            # print(image)
             url = image['url']
             name = image['name']
-            # print(url, "name: ", name)
             imgs.append([getURLImage(url),name])
-            # names.append(name)
 
         # Detect the faces
         base_encodings = face_recognition.face_encodings(base64_image)[0]
